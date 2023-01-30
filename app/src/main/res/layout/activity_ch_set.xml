@@ -1,0 +1,72 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SetActivity">
+    <TextView
+        android:id="@+id/tv_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/btn_account_security"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="账号与安全"
+        android:layout_marginTop="30dp"
+        android:onClick="onAccountSecurityClick"/>
+
+    <Button
+        android:id="@+id/btn_personal_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="个人信息"
+        android:layout_marginTop="30dp"
+        android:onClick="onPersonalInfoClick"/>
+
+
+
+    <Button
+        android:id="@+id/btn_message_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="消息通知"
+        android:layout_marginTop="30dp"
+        android:onClick="onMessageNotificationClick"/>
+
+    <Button
+        android:id="@+id/btn_privacy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="隐私"
+        android:layout_marginTop="30dp"
+        android:onClick="onPrivacyClick"/>
+
+    <Button
+        android:id="@+id/btn_general"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="通用"
+        android:layout_marginTop="30dp"
+        android:onClick="onGeneralClick"/>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="退出登录"
+        android:layout_marginTop="30dp"
+        android:onClick="onLogoutClick"/>
+</LinearLayout>
+
+
+
+
