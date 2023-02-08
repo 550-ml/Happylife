@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="紧急呼救"
+        android:textSize="60dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        >
+    </TextView>
+
+    <Button
+        android:id="@+id/health_info"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="个人健康信息"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btbg_gray"
+        >
+
+    </Button>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        >
+        <Button
+            android:id="@+id/call_110"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/btbg_grayonlyside"
+            android:text="匪警110                      >"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            >
+        </Button>
+        <Button
+            android:id="@+id/call_119"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/btbg_grayonlyside"
+            android:text="火警119                      >"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            >
+        </Button>
+        <Button
+            android:id="@+id/call_120"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/btbg_grayonlyside"
+            android:text="急救120                      >"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            >
+        </Button>
+        <Button
+            android:id="@+id/call_family"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="100dp"
+            android:background="@drawable/btbg_red"
+            android:text="呼叫紧急联系人"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            >
+        </Button>
+
+        <Button
+            android:id="@+id/call_exit"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:text="退出"
+            android:textSize="30dp"
+            android:textColor="#DCDCDC"
+            android:layout_gravity="center"
+            android:background="@drawable/btbg_grayexit"
+            >
+
+        </Button>
+    </LinearLayout>
+</LinearLayout>
