@@ -1,10 +1,9 @@
 package com.example.a111111
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.a111111.life.ChildLifeActivity
 
 class ChildActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,8 +14,11 @@ class ChildActivity : BaseActivity() {
         val btnInteraction = findViewById<Button>(R.id.btn_interaction)
         val btnPersonal = findViewById<Button>(R.id.btn_personal)
         btnLife.setOnClickListener {
-            //跳转到生活界面
+            val intent = Intent(this, ChildLifeActivity::class.java)
+            startActivity(intent)
+
         }
+
 
         btnActivity.setOnClickListener {
             //跳转到活动界面

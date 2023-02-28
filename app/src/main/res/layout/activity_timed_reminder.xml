@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edtTitle"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:hint="请输入提醒内容的主题"
+        android:gravity="left"
+        android:layout_gravity="center"
+        android:maxLines="10" />
+
+    <EditText
+        android:id="@+id/edtContent"
+        android:layout_width="360dp"
+        android:layout_height="300dp"
+        android:hint="请输入提醒内容"
+        android:gravity="left"
+        android:layout_gravity="center"
+        android:maxLines="10" />
+
+    <!-- 添加提醒的按钮 -->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加一条定时提醒"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="已添加的定时提醒"
+        android:layout_margin="16dp"/>
+
+    <!-- 定时提醒列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="16dp"/>
+
+</LinearLayout>
