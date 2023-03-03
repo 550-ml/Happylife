@@ -1,6 +1,7 @@
 package com.example.a111111.life
 
 import android.os.Bundle
+import android.widget.Toast
 import com.example.a111111.BaseActivity
 import com.example.a111111.databinding.ActivityInstantReminderBinding
 
@@ -13,7 +14,11 @@ class InstantReminderActivity : BaseActivity() {
         binding.btnSend.setOnClickListener {
             val title = binding.edtTitle.text.toString()
             val content = binding.edtContent.text.toString()
-            val remind = Remind(title, content,"0")
+            if(title.isNotEmpty()||content.isNotEmpty()) {
+                val remind = Remind(title, content, "0")
+            }
+            Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show()
+            TODO("将remind上传服务器数据库")
         }
     }
 }

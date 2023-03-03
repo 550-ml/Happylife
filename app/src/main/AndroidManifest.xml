@@ -2,11 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-<<<<<<< HEAD
-=======
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
->>>>>>> origin/master
 
     <application
         android:allowBackup="true"
@@ -18,15 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.111111"
         tools:targetApi="31">
-<<<<<<< HEAD
         <activity android:name=".life.ChildLifeActivity"
             android:exported="true"/>
         <activity android:name=".life.InstantReminderActivity"
             android:exported="true"/>
         <activity android:name=".life.TimedReminderActivity"
             android:exported="true"/>
-=======
-
 
         <activity
             android:name=".L_ViewActivityDetail"
@@ -93,7 +87,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
->>>>>>> origin/master
         <activity
             android:name=".ChSetActivity"
             android:exported="false">
@@ -130,16 +123,11 @@
                 android:value="" />
         </activity>
         <activity
-<<<<<<< HEAD
 
             android:name=".RegisterActivity"
             android:exported="false"
             >
 
-=======
-            android:name=".RegisterActivity"
-            android:exported="false">
->>>>>>> origin/master
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -162,9 +150,6 @@
         </activity>
     </application>
 
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-=======
->>>>>>> origin/master
 </manifest>
