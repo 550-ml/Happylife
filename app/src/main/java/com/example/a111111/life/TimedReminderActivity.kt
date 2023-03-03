@@ -31,6 +31,5 @@ class TimedReminderActivity : BaseActivity() {
                 binding.edtTime.setText("")
             }
         }
-        TODO("将remind上传服务器数据库")
     }
 }

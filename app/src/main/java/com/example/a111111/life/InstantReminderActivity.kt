@@ -18,7 +18,6 @@ class InstantReminderActivity : BaseActivity() {
                 val remind = Remind(title, content, "0")
             }
             Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show()
-            TODO("将remind上传服务器数据库")
         }
     }
 }
