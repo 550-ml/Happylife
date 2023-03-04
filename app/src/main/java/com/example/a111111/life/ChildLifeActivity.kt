@@ -2,10 +2,10 @@ package com.example.a111111.life
 
 import android.content.Intent
 import android.os.Bundle
-import com.example.a111111.BaseActivity
+import com.example.a111111.WT_BaseActivity
 import com.example.a111111.databinding.ActivityChildLifeBinding
 
-class ChildLifeActivity : BaseActivity() {
+class ChildLifeActivity : WT_BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

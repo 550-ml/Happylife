@@ -2,11 +2,11 @@ package com.example.a111111.life
 
 import android.os.Bundle
 import android.widget.Toast
-import com.example.a111111.BaseActivity
+import com.example.a111111.WT_BaseActivity
 import com.example.a111111.databinding.ActivityInstantRemindBinding
 import java.sql.DriverManager
 
-class InstantRemindActivity : BaseActivity() {
+class InstantRemindActivity : WT_BaseActivity() {
 
     val jdbcUrl = "jdbc:mysql://39.101.79.219:3306/sgly2004?useSSL=false"
     val username = "sgly2004"

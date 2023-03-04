@@ -3,10 +3,10 @@ package com.example.a111111.life
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.a111111.BaseActivity
+import com.example.a111111.WT_BaseActivity
 import com.example.a111111.databinding.ActivityTimedRemindBinding
 
-class TimedRemindActivity : BaseActivity() {
+class TimedRemindActivity : WT_BaseActivity() {
 
     private val remindList = ArrayList<Remind>()
 
