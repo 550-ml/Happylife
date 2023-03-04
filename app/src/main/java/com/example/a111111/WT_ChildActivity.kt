@@ -1,32 +1,35 @@
 package com.example.a111111
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.a111111.life.ChildLifeActivity
 
-class ElderActivity : BaseActivity() {
+class WT_ChildActivity : WT_BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_elder)
+        setContentView(R.layout.activity_child_acctivity)
         val btnLife = findViewById<Button>(R.id.btn_life)
         val btnActivity = findViewById<Button>(R.id.btn_activity)
-        val btnEmergency = findViewById<Button>(R.id.btn_emergency)
+         val btnInteraction = findViewById<Button>(R.id.btn_interaction)
         val btnPersonal = findViewById<Button>(R.id.btn_personal)
         btnLife.setOnClickListener {
-            //跳转到生活界面
+            val intent = Intent(this, ChildLifeActivity::class.java)
+            startActivity(intent)
+
         }
+
 
         btnActivity.setOnClickListener {
             //跳转到活动界面
         }
 
-        btnEmergency.setOnClickListener {
-            //跳转到急救界面
+        btnInteraction.setOnClickListener {
+            //跳转到互动界面
         }
 
         btnPersonal.setOnClickListener {
-            val intent = Intent(this, SetActivity::class.java)
+            val intent = Intent(this, WT_ChSetActivityWT::class.java)
             startActivity(intent)
         }
 

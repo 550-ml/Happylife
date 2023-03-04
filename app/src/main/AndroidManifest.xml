@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".WT_Application"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,6 +16,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.111111"
         tools:targetApi="31">
+        <activity
+            android:name=".WT_TExt"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".WT_BindActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".WT_PersonalSetActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <activity
             android:name=".G_TestChooseAdapter"
             android:exported="false">
@@ -78,13 +108,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".life.ChildLifeActivity"
-            android:exported="true"/>
-        <activity android:name=".life.InstantRemindActivity"
-            android:exported="true"/>
-        <activity android:name=".life.TimedRemindActivity"
-            android:exported="true"/>
-
         <activity
             android:name=".L_ViewActivityDetail"
             android:exported="false">
@@ -151,49 +174,49 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ChSetActivity"
+            android:name=".WT_ChSetActivityWT"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SetActivity"
+            android:name=".WT_ELSetActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Switch11Activity"
+            android:name=".WT_Switch11Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".wangtuo.ChildActivity"
+            android:name=".WT_ChildActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".wangtuo.ElderActivity"
+            android:name=".WT_ElderActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".WT_RegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".WT_LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -202,7 +225,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".WT_MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

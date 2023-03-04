@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SetActivity">
+    tools:context=".WT_ELSetActivity">
     <TextView
         android:id="@+id/tv_setting"
         android:layout_width="wrap_content"
@@ -28,9 +28,17 @@
         android:id="@+id/btn_personal_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="个人信息"
+        android:text="老人个人信息"
         android:layout_marginTop="30dp"
         android:onClick="onPersonalInfoClick"/>
+
+    <Button
+        android:id="@+id/btn_binding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="绑定老人账号"
+        android:layout_marginTop="30dp"
+        android:onClick="binding_onClick"/>
 
 
 

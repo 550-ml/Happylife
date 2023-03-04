@@ -3,7 +3,7 @@ package com.example.a111111
 import android.app.Activity
 
 //用于管理所有的activity
-object ActivityCollector {
+object WT_ActivityCollector {
     private val activities = ArrayList<Activity>()
     fun addActivity(activity: Activity) {
         activities.add(activity)

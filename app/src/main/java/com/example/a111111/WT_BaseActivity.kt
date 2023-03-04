@@ -7,11 +7,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
-open class BaseActivity : AppCompatActivity() {
+open class WT_BaseActivity : AppCompatActivity() {
     lateinit var receiver: ForceOfflineReceiver
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ActivityCollector.addActivity(this)
+        WT_ActivityCollector.addActivity(this)
     }
     override fun onResume() {
         super.onResume()
@@ -21,7 +21,7 @@ open class BaseActivity : AppCompatActivity() {
         registerReceiver(receiver, intentFilter)
     }
 
-    private fun registerReceiver(receiver: BaseActivity.ForceOfflineReceiver, intentFilter: IntentFilter) {
+    private fun registerReceiver(receiver: WT_BaseActivity.ForceOfflineReceiver, intentFilter: IntentFilter) {
 
     }
 
@@ -30,13 +30,13 @@ open class BaseActivity : AppCompatActivity() {
         unregisterReceiver(receiver)
     }
 
-    private fun unregisterReceiver(receiver: BaseActivity.ForceOfflineReceiver) {
+    private fun unregisterReceiver(receiver: WT_BaseActivity.ForceOfflineReceiver) {
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        ActivityCollector.removeActivity(this)
+        WT_ActivityCollector.removeActivity(this)
     }
     inner class ForceOfflineReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -46,8 +46,8 @@ open class BaseActivity : AppCompatActivity() {
                 setMessage("You are forced to be offline. Please try to login again.")
                 setCancelable(false)
                 setPositiveButton("OK") { _, _ ->
-                    ActivityCollector.finishAll() // 销毁所有Activity
-                    val i = Intent(context, LoginActivity::class.java)
+                    WT_ActivityCollector.finishAll() // 销毁所有Activity
+                    val i = Intent(context, WT_LoginActivity::class.java)
                     context.startActivity(i) // 重新启动LoginActivity
                 }
                 show()

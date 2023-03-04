@@ -1,11 +1,10 @@
 package com.example.a111111
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class ChSetActivity : BaseActivity() {
+class WT_ChSetActivityWT : WT_BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ch_set)
@@ -15,13 +14,22 @@ class ChSetActivity : BaseActivity() {
         val privacy = findViewById<Button>(R.id.btn_privacy)
         val general = findViewById<Button>(R.id.btn_general)
         val logout = findViewById<Button>(R.id.btn_logout)
+        val bindingold = findViewById<Button>(R.id.btn_binding) // 获取绑定按钮
 
         accountAndSecurity.setOnClickListener {
             //跳转到账号与安全界面
         }
         personalInfo.setOnClickListener {
             //跳转到个人信息界面
+            val intent = Intent(this,WT_PersonalSetActivity::class.java)
+            startActivity(intent)
         }
+        bindingold.setOnClickListener {
+            //跳转到绑定界面
+            val intent = Intent(this, WT_BindActivity::class.java)
+            startActivity(intent)
+        }
+
         messageNotification.setOnClickListener {
             //跳转到消息通知界面
         }
@@ -32,9 +40,9 @@ class ChSetActivity : BaseActivity() {
             //跳转到通用界面
         }
         logout.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, WT_LoginActivity::class.java)
             startActivity(intent)
-            ActivityCollector.finishAll()
+            WT_ActivityCollector.finishAll()
             finish()
         }
     }

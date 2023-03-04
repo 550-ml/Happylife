@@ -1,11 +1,10 @@
 package com.example.a111111
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class SetActivity : BaseActivity() {
+class WT_ELSetActivity : WT_BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set)
@@ -22,6 +21,8 @@ class SetActivity : BaseActivity() {
         }
         personalInfo.setOnClickListener {
             //跳转到个人信息界面
+            val intent = Intent(this,WT_PersonalSetActivity::class.java)
+            startActivity(intent)
         }
         personalHealthRecord.setOnClickListener {
             //跳转到个人健康档案界面
@@ -36,9 +37,9 @@ class SetActivity : BaseActivity() {
             //跳转到通用界面
         }
         logout.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, WT_LoginActivity::class.java)
             startActivity(intent)
-            ActivityCollector.finishAll()
+            WT_ActivityCollector.finishAll()
             finish()
         }
     }
