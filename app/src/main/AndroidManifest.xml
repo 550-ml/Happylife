@@ -80,9 +80,9 @@
         </activity>
         <activity android:name=".life.ChildLifeActivity"
             android:exported="true"/>
-        <activity android:name=".life.InstantReminderActivity"
+        <activity android:name=".life.InstantRemindActivity"
             android:exported="true"/>
-        <activity android:name=".life.TimedReminderActivity"
+        <activity android:name=".life.TimedRemindActivity"
             android:exported="true"/>
 
         <activity
@@ -172,14 +172,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ChildActivity"
+            android:name=".wangtuo.ChildActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ElderActivity"
+            android:name=".wangtuo.ElderActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

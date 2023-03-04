@@ -1,13 +1,12 @@
 package com.example.a111111.life
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a111111.BaseActivity
-import com.example.a111111.databinding.ActivityTimedReminderBinding
+import com.example.a111111.databinding.ActivityTimedRemindBinding
 
-class TimedReminderActivity : BaseActivity() {
+class TimedRemindActivity : BaseActivity() {
 
     private val remindList = ArrayList<Remind>()
 
@@ -15,7 +14,7 @@ class TimedReminderActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityTimedReminderBinding.inflate(layoutInflater)
+        val binding = ActivityTimedRemindBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val adapter = RemindAdapter(remindList)
         binding.recyclerView.adapter = adapter
@@ -36,7 +35,7 @@ class TimedReminderActivity : BaseActivity() {
         }
         adapter.setOnItemClickListener(object :RemindAdapter.OnItemClickListener{
             override fun onItemClick(position: Int) {
-                AlertDialog.Builder(this@TimedReminderActivity).apply {
+                AlertDialog.Builder(this@TimedRemindActivity).apply {
                     setTitle("是否要删除此条提醒")
                     setMessage("")
                     setCancelable(false)

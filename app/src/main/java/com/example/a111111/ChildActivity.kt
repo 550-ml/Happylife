@@ -11,7 +11,7 @@ class ChildActivity : BaseActivity() {
         setContentView(R.layout.activity_child_acctivity)
         val btnLife = findViewById<Button>(R.id.btn_life)
         val btnActivity = findViewById<Button>(R.id.btn_activity)
-        val btnInteraction = findViewById<Button>(R.id.btn_interaction)
+         val btnInteraction = findViewById<Button>(R.id.btn_interaction)
         val btnPersonal = findViewById<Button>(R.id.btn_personal)
         btnLife.setOnClickListener {
             val intent = Intent(this, ChildLifeActivity::class.java)

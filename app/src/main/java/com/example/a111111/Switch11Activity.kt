@@ -1,9 +1,10 @@
 package com.example.a111111
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.a111111.databinding.ActivitySwitch11Binding
+import com.example.a111111.wangtuo.ChildActivity
+import com.example.a111111.wangtuo.ElderActivity
 
 
 class Switch11Activity : BaseActivity() {

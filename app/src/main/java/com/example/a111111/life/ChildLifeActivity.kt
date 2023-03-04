@@ -13,11 +13,11 @@ class ChildLifeActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.btnToInstantReminder.setOnClickListener {
-            val intent = Intent(this, InstantReminderActivity::class.java)
+            val intent = Intent(this, InstantRemindActivity::class.java)
             startActivity(intent)
         }
         binding.btnToTimedReminder.setOnClickListener {
-             val intent = Intent(this, TimedReminderActivity::class.java)
+             val intent = Intent(this, TimedRemindActivity::class.java)
             startActivity(intent)
         }
     }
