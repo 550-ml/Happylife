@@ -10,8 +10,6 @@ class TimedRemindActivity : WT_BaseActivity() {
 
     private val remindList = ArrayList<Remind>()
 
-    private var adapter: RemindAdapter? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityTimedRemindBinding.inflate(layoutInflater)
@@ -39,10 +37,10 @@ class TimedRemindActivity : WT_BaseActivity() {
                     setTitle("是否要删除此条提醒")
                     setMessage("")
                     setCancelable(false)
-                    setPositiveButton("确定") { dialog, which ->
+                    setPositiveButton("确定") { _, _ ->
                         adapter.removeData(position)
                     }
-                    setNegativeButton("取消") { dialog, which -> }
+                    setNegativeButton("取消") { _, _ -> }
                     show()
                 }
             }

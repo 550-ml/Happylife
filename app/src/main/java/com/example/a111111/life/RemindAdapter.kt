@@ -42,11 +42,12 @@ class RemindAdapter(private val RemindList :ArrayList<Remind>) : RecyclerView.Ad
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun removeData(position:Int) {
         RemindList.removeAt(position)
         //删除动画
         notifyItemRemoved(position)
-        notifyDataSetChanged();//为了数据同步防止错位
+        notifyDataSetChanged()//为了数据同步防止错位
     }
 
 
