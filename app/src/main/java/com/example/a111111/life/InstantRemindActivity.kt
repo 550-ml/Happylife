@@ -33,7 +33,7 @@ class InstantRemindActivity : WT_BaseActivity() {
                     //使用 connection 属性来获取到数据库连接
                     // 使用 JDBC 驱动从数据库中读取数据
                     val statement = connection.createStatement()
-                    val sql = "INSERT INTO remind (title,content) " +"VALUES ('$title', '$content')"
+                    val sql = "INSERT INTO remind (title,content) VALUES ('$title', '$content')"
 
                     // 将数据插入到数据库中
                     statement.executeUpdate(sql)

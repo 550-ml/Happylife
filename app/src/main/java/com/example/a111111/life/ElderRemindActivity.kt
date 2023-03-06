@@ -1,11 +1,12 @@
 package com.example.a111111.life
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a111111.WT_BaseActivity
 import com.example.a111111.databinding.ActivityElderRemindBinding
 
-class ElderRemindActivity : AppCompatActivity() {
+class ElderRemindActivity : WT_BaseActivity() {
 
     private val remindList =ArrayList<Remind>()
 
