@@ -1,5 +1,6 @@
 package com.example.a111111.life
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import com.example.a111111.WT_BaseActivity
@@ -21,6 +22,7 @@ class InstantRemindActivity : WT_BaseActivity() {
         binding.btnSend.setOnClickListener {
             val title = binding.edtTitle.text.toString()
             val content = binding.edtContent.text.toString()
+            val time = "now"
             if(title.isNotEmpty()||content.isNotEmpty()) {
                 Thread {
 
@@ -33,7 +35,9 @@ class InstantRemindActivity : WT_BaseActivity() {
                     //使用 connection 属性来获取到数据库连接
                     // 使用 JDBC 驱动从数据库中读取数据
                     val statement = connection.createStatement()
-                    val sql = "INSERT INTO remind (title,content) VALUES ('$title', '$content')"
+                    val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                    val username = sharedPreferences.getString("username","")
+                    val sql = "INSERT INTO remind (child_name,title,content,time) VALUES ('$username','$title', '$content','$time')"
 
                     // 将数据插入到数据库中
                     statement.executeUpdate(sql)
