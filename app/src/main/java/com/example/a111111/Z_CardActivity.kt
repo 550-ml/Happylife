@@ -1,37 +1,29 @@
 package com.example.a111111
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.sql.Connection
 import java.sql.DriverManager
 
-class WT_ElderActivity : WT_BaseActivity() {
+class Z_CardActivity : AppCompatActivity() {
 
-    //这里是主页卡片的代码
     private val nameList = mutableListOf<String>()
     private val cards = mutableListOf<Z_Card>()
     private lateinit var adapter: Z_CardAdapter
-    //到这里结束
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_elder)
-        val btnLife = findViewById<Button>(R.id.btn_life)
-        val btnActivity = findViewById<Button>(R.id.btn_activity)
-        val btnEmergency = findViewById<Button>(R.id.btn_emergency)
-        val btnPersonal = findViewById<Button>(R.id.btn_personal)
+        setContentView(R.layout.activity_card)
 
-        //这里是主页卡片的另一部分
-
+        //从这里开始
 
         val recyclerView = findViewById<RecyclerView>(R.id.card_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val acting = Z_Acting()
-        adapter = Z_CardAdapter(cards, acting)
+        val acting =Z_Acting()
+        adapter = Z_CardAdapter(cards,acting)
         recyclerView.adapter = adapter
 
         Thread {
@@ -41,8 +33,7 @@ class WT_ElderActivity : WT_BaseActivity() {
                 //连接到数据库并获取连接对象
                 val connection = DriverManager.getConnection(jdbcUrl, username, password)
                 // 查询数据
-                val query =
-                    "SELECT id, title, content, test_name FROM question_choose WHERE status=1"
+                val query = "SELECT id, title, content, test_name FROM question_choose WHERE status=1"
                 val statement = connection.createStatement()
                 val resultSet = statement.executeQuery(query)
 
@@ -58,8 +49,7 @@ class WT_ElderActivity : WT_BaseActivity() {
                         content = content,
                         hasButtons = true,
                         onYesClickListener = {
-                            val query =
-                                "SELECT oldername, testname FROM test WHERE oldername=? AND testname=?"
+                            val query = "SELECT oldername, testname FROM test WHERE oldername=? AND testname=?"
                             val preparedStatement = connection.prepareStatement(query)
                             preparedStatement.setString(1, "当前用户姓名")
                             val result = preparedStatement.executeQuery()
@@ -72,8 +62,7 @@ class WT_ElderActivity : WT_BaseActivity() {
                             }
                         },
                         onNoClickListener = {
-                            val query =
-                                "SELECT oldername, testname, id FROM test WHERE oldername=? AND testname=?"
+                            val query = "SELECT oldername, testname, id FROM test WHERE oldername=? AND testname=?"
                             val preparedStatement = connection.prepareStatement(query)
                             preparedStatement.setString(1, "当前用户姓名")
                             val result = preparedStatement.executeQuery()
@@ -93,36 +82,12 @@ class WT_ElderActivity : WT_BaseActivity() {
                 e.printStackTrace()
             }
         }.start()
-
-
-       //到这里结束
-
-        btnLife.setOnClickListener {
-            //跳转到生活界面
-        }
-
-        btnActivity.setOnClickListener {
-            val intent = Intent(this, L_ViewActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnEmergency.setOnClickListener {
-            //跳转到急救界面
-        }
-
-        btnPersonal.setOnClickListener {
-            val intent = Intent(this, WT_ELSetActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 
-
-    //这是卡片的第三部分
     companion object {
-        val jdbcUrl = "jdbc:mysql://39.101.79.219:3306/sgly2004?useSSL=false"
-        val username = "sgly2004"
-        val password = "sgly2004"
+        const val jdbcUrl = "jdbc:mysql://39.101.79.219:3306/sgly2004?useSSL=false"
+        const val username = "sgly2004"
+        const val password = "sgly2004"
 
         private fun updateAnswer(connection: Connection, id: Int, answer: Int) {
             val updateQuery = "UPDATE question_choose SET answer4=? WHERE id=?"
@@ -132,5 +97,10 @@ class WT_ElderActivity : WT_BaseActivity() {
             updateStatement.executeUpdate()
         }
     }
+
     //到这里结束
 }
+
+
+
+
