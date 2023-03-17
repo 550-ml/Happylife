@@ -17,6 +17,8 @@ class Z_CardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card)
 
+        //从这里开始
+
         val recyclerView = findViewById<RecyclerView>(R.id.card_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -95,6 +97,8 @@ class Z_CardActivity : AppCompatActivity() {
             updateStatement.executeUpdate()
         }
     }
+
+    //到这里结束
 }
 
 
