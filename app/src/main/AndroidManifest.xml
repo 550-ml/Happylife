@@ -17,7 +17,7 @@
         android:theme="@style/Theme.111111"
         tools:targetApi="31">
         <activity
-            android:name=".Call_HellpActivity"
+            android:name=".gbt.Call_HelpActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
