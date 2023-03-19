@@ -4,11 +4,12 @@ package com.example.a111111.life
 import android.content.Context
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a111111.R
 import com.example.a111111.WT_BaseActivity
-import com.example.a111111.databinding.ActivityElderRemindBinding
+import com.example.a111111.databinding.ActivityElderLifeBinding
 import java.sql.DriverManager
 
-class ElderRemindActivity : WT_BaseActivity() {
+class ElderLifeActivity : WT_BaseActivity() {
 
     private val remindList =ArrayList<Remind>()
     val jdbcUrl = "jdbc:mysql://39.101.79.219:3306/sgly2004?useSSL=false"
@@ -24,7 +25,7 @@ class ElderRemindActivity : WT_BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityElderRemindBinding.inflate(layoutInflater)
+        val binding = ActivityElderLifeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Thread {
 
