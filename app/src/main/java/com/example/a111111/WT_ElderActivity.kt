@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a111111.gbt.Call_HelpActivity
 import com.example.a111111.life.ChildLifeActivity
+import com.example.a111111.life.ElderLifeActivity
 import java.sql.Connection
 import java.sql.DriverManager
 
@@ -100,7 +101,7 @@ class WT_ElderActivity : WT_BaseActivity() {
        //到这里结束
 
         btnLife.setOnClickListener {
-            val intent = Intent(this, ChildLifeActivity::class.java)
+            val intent = Intent(this, ElderLifeActivity::class.java)
             startActivity(intent)
         }
 
