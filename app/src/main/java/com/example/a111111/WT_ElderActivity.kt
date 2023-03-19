@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.a111111.gbt.Call_HelpActivity
+import com.example.a111111.life.ChildLifeActivity
 import java.sql.Connection
 import java.sql.DriverManager
 
@@ -30,7 +32,7 @@ class WT_ElderActivity : WT_BaseActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.card_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val acting = Z_Acting()
+        val acting = Z_Acting(this)
         adapter = Z_CardAdapter(cards, acting)
         recyclerView.adapter = adapter
 
@@ -98,7 +100,8 @@ class WT_ElderActivity : WT_BaseActivity() {
        //到这里结束
 
         btnLife.setOnClickListener {
-            //跳转到生活界面
+            val intent = Intent(this, ChildLifeActivity::class.java)
+            startActivity(intent)
         }
 
         btnActivity.setOnClickListener {
@@ -107,7 +110,8 @@ class WT_ElderActivity : WT_BaseActivity() {
         }
 
         btnEmergency.setOnClickListener {
-            //跳转到急救界面
+            val intent = Intent(this, Call_HelpActivity::class.java)
+            startActivity(intent)
         }
 
         btnPersonal.setOnClickListener {

@@ -22,7 +22,7 @@ class Z_CardActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.card_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val acting =Z_Acting()
+        val acting =Z_Acting(this)
         adapter = Z_CardAdapter(cards,acting)
         recyclerView.adapter = adapter
 

@@ -16,16 +16,16 @@ class WT_ChildActivity : WT_BaseActivity() {
         btnLife.setOnClickListener {
             val intent = Intent(this, ChildLifeActivity::class.java)
             startActivity(intent)
-
         }
 
-
         btnActivity.setOnClickListener {
-            //跳转到活动界面
+            val intent = Intent(this, L_ChooseActivity::class.java)
+            startActivity(intent)
         }
 
         btnInteraction.setOnClickListener {
-            //跳转到互动界面
+            val intent = Intent(this, G_TestChoose::class.java)
+            startActivity(intent)
         }
 
         btnPersonal.setOnClickListener {
