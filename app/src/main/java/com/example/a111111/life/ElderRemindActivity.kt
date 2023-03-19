@@ -15,6 +15,12 @@ class ElderRemindActivity : WT_BaseActivity() {
     val username = "sgly2004"
     val password = "sgly2004"
 
+    private val childList = ArrayList<Remind>()
+
+    override fun onResume() {
+        childList.clear()
+        super.onResume()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +45,7 @@ class ElderRemindActivity : WT_BaseActivity() {
             val resultSet = statement.executeQuery()
 
             // 遍历结果集，将查询到的记录保存到一个 List 中
-            val childList = ArrayList<Remind>()
+
             while (resultSet.next()) {
                 val title = resultSet.getString("title")
                 val content = resultSet.getString("content")
