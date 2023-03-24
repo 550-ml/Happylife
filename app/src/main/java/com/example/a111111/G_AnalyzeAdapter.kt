@@ -11,8 +11,8 @@ class G_AnalyzeAdapter(private val activity: G_Analyze, private val ItemLIst:Lis
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //使用 findViewById 方法来获取布局文件中的文本展示框
-        val TestNameTextView: TextView = view.findViewById(R.id.TestNameTextView)
-        val TestScoreTextView:TextView= view.findViewById(R.id.TestScoreTextView)
+        val testNameTextView: TextView = view.findViewById(R.id.TestNameTextView)
+        val testScoreTextView:TextView= view.findViewById(R.id.TestScoreTextView)
     }
 
     //加载了卡片的布局文件，并创建了 ViewHolder 实例
@@ -26,8 +26,8 @@ class G_AnalyzeAdapter(private val activity: G_Analyze, private val ItemLIst:Lis
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = ItemLIst[position]
-        holder.TestNameTextView.text = item.name
-        holder.TestScoreTextView.text = "${item.score}"
+        holder.testNameTextView.text = item.name
+        holder.testScoreTextView.text = "${item.score}"
 
         //为卡片添加了点击事件处理器
         holder.itemView.setOnClickListener {

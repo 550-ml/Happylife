@@ -18,7 +18,6 @@ class L_Add : AppCompatActivity() {
         val username = "sgly2004"
         val password = "sgly2004"
 
-
         val submit_button: Button =findViewById(R.id.submit_button)
         submit_button.setOnClickListener {
 
@@ -31,6 +30,9 @@ class L_Add : AppCompatActivity() {
             snackbar.setAction("确定") {
                 // 点击确定按钮的处理逻辑
                 // 获取文本框中的数据
+                val oldernameEditText = findViewById<EditText>(R.id.input_oldername)
+                val oldername = oldernameEditText.text.toString()
+
                 val nameEditText = findViewById<EditText>(R.id.input_name)
                 val name = nameEditText.text.toString()
 
@@ -40,8 +42,8 @@ class L_Add : AppCompatActivity() {
                 val locationEditText = findViewById<EditText>(R.id.input_location)
                 val location = locationEditText.text.toString()
 
-                val workContextEditText = findViewById<EditText>(R.id.input_work_content)
-                val workContext = workContextEditText.text.toString()
+                val workcontentEditText = findViewById<EditText>(R.id.input_work_content)
+                val workcontent = workcontentEditText.text.toString()
 
                 val childAdviceEditText = findViewById<EditText>(R.id.input_child_advice)
                 val childAdvice = childAdviceEditText.text.toString()
@@ -57,8 +59,8 @@ class L_Add : AppCompatActivity() {
                     //使用 connection 属性来获取到数据库连接
                     // 使用 JDBC 驱动从数据库中读取数据
                     val statement = connection.createStatement()
-                    val sql = "INSERT INTO activity (name, time, location, work_context, child_advice) " +
-                            "VALUES ('$name', '$time', '$location', '$workContext', '$childAdvice')"
+                    val sql = "INSERT INTO activity (oldername, name, time, location, work_content, child_advice) " +
+                            "VALUES ('$oldername','$name', '$time', '$location', '$workcontent', '$childAdvice')"
 
                     // 将数据插入到数据库中
                     statement.executeUpdate(sql)
@@ -74,5 +76,4 @@ class L_Add : AppCompatActivity() {
             }.show()
         }
     }
-
 }

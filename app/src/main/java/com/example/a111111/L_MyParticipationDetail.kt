@@ -31,7 +31,7 @@ class L_MyParticipationDetail : AppCompatActivity() {
             // 使用 JDBC 驱动从数据库中读取数据
             val statement = connection.createStatement()
             val resultSet =
-                statement.executeQuery("SELECT * FROM test WHERE id = $position")
+                statement.executeQuery("SELECT * FROM participation WHERE id = $position")
             //更新UI需要在主线程
             runOnUiThread {
                 val activityNameTextView: TextView = findViewById(R.id.activityNameTextView)

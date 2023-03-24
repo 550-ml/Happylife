@@ -1,5 +1,7 @@
 package com.example.a111111
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -7,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import java.sql.Connection
 import java.sql.DriverManager
 
-class L_ViewActivity : AppCompatActivity() {
+
+class L_ViewActivity() : AppCompatActivity() {
+
     var datas = mutableListOf<L_Item_card>()
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
@@ -30,9 +35,12 @@ class L_ViewActivity : AppCompatActivity() {
                 //连接到数据库并获取连接对象
                 connection = DriverManager.getConnection(jdbcUrl, username, password)
                 //SQL查询,从 activity 表中获取所有行
-                val resultSet =
-                    connection?.createStatement()?.executeQuery("SELECT * FROM test")
-                //使用 resultSet.next() 遍历结果集并获取每一行的每一列的值
+
+                val sharedPreferences = this.getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                val currentUser = sharedPreferences.getString("username", "")
+
+                val query = "SELECT * FROM participation WHERE oldername='$currentUser'"
+                val resultSet = connection?.createStatement()?.executeQuery(query)
 
                 for (i in 0..(resultSet?.row ?: 0)){
                     while (resultSet?.next() == true) {

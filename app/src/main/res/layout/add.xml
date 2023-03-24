@@ -8,6 +8,16 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="OlderName:" />
+
+    <EditText
+        android:id="@+id/input_oldername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Name:" />
 
     <EditText

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class L_ChooseActivityAdapter(private val activity: L_ChooseActivity, private val ItemLIst:List<L_Item_card>) :
+class L_ChooseActivityAdapter(private val activity: L_ChooseActivity, private val ItemLIst:MutableList<L_Item_card>) :
     RecyclerView.Adapter<L_ChooseActivityAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

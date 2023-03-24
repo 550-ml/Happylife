@@ -1,5 +1,6 @@
 package com.example.a111111
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import java.sql.DriverManager
 
 class L_ChooseActivity : AppCompatActivity() {
     private var datas = mutableListOf<L_Item_card>()
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose)
@@ -42,7 +44,10 @@ class L_ChooseActivity : AppCompatActivity() {
                     }
                 }
                 //通知 adapter 数据已经更改并调用 notifyDataSetChanged() 方法来更新视图
-                adapter.notifyDataSetChanged()
+                recyclerView.post {
+                    //通知 adapter 数据已经更改并调用 notifyDataSetChanged() 方法来更新视图
+                    adapter.notifyDataSetChanged()
+                }
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }

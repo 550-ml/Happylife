@@ -33,7 +33,7 @@ class L_ChooseActivityDetail : AppCompatActivity() {
             // 使用 JDBC 驱动从数据库中读取数据
             val statement = connection.createStatement()
             val resultSet =
-                statement.executeQuery("SELECT * FROM activity WHERE id = $position")
+                statement.executeQuery("SELECT * FROM activities WHERE id = $position")
             //更新UI需要在主线程
             runOnUiThread {
                 val activityNameTextView: TextView = findViewById(R.id.activityNameTextView)
@@ -68,10 +68,10 @@ class L_ChooseActivityDetail : AppCompatActivity() {
                 // 使用 JDBC 驱动从数据库中读取数据
                 val statement = connection.createStatement()
                 val resultSet =
-                    statement.executeQuery("SELECT * FROM activity WHERE id = $position")
+                    statement.executeQuery("SELECT * FROM activities WHERE id = $position")
 
                 val selectSQL =
-                    "SELECT name,time,location,work_content,child_advice FROM activity where id = $position"
+                    "SELECT name,time,location,work_content,child_advice FROM activities where id = $position"
 
                 while (resultSet.next()) {
                     val name: String = resultSet.getString("name")
@@ -81,7 +81,7 @@ class L_ChooseActivityDetail : AppCompatActivity() {
                     val child_advice: String = resultSet.getString("child_advice")
 
                     val insertSQL =
-                        "INSERT INTO participate (name,time,location,work_content,child_advice) values(?,?,?,?,?)"
+                        "INSERT INTO participation (name,time,location,work_content,child_advice) values(?,?,?,?,?)"
                     val preparedStatement: PreparedStatement = connection.prepareStatement(insertSQL)
                     preparedStatement.setString(1, name)
                     preparedStatement.setString(2, time)

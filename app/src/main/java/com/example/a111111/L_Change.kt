@@ -25,7 +25,7 @@ class L_Change : AppCompatActivity() {
             Class.forName("com.mysql.jdbc.Driver")
             val connection = DriverManager.getConnection(jdbcUrl, username, password)
             val statement = connection.createStatement()
-            val resultSet = statement.executeQuery("SELECT * FROM activity WHERE id = $position")
+            val resultSet = statement.executeQuery("SELECT * FROM activities WHERE id = $position")
 
             runOnUiThread {
                 if (resultSet.next()) {
@@ -38,8 +38,8 @@ class L_Change : AppCompatActivity() {
                     val locationEditText = findViewById<EditText>(R.id.input_location)
                     locationEditText.setText(resultSet.getString("location"))
 
-                    val workContextEditText = findViewById<EditText>(R.id.input_work_content)
-                    workContextEditText.setText(resultSet.getString("work_context"))
+                    val workcontentEditText = findViewById<EditText>(R.id.input_work_content)
+                    workcontentEditText.setText(resultSet.getString("work_content"))
 
                     val childAdviceEditText = findViewById<EditText>(R.id.input_child_advice)
                     childAdviceEditText.setText(resultSet.getString("child_advice"))
@@ -68,8 +68,8 @@ class L_Change : AppCompatActivity() {
                 val locationEditText = findViewById<EditText>(R.id.input_location)
                 val location = locationEditText.text.toString()
 
-                val workContextEditText = findViewById<EditText>(R.id.input_work_content)
-                val workContext = workContextEditText.text.toString()
+                val workcontentEditText = findViewById<EditText>(R.id.input_work_content)
+                val workcontent = workcontentEditText.text.toString()
 
                 val childAdviceEditText = findViewById<EditText>(R.id.input_child_advice)
                 val childAdvice = childAdviceEditText.text.toString()
@@ -85,8 +85,8 @@ class L_Change : AppCompatActivity() {
                     //使用 connection 属性来获取到数据库连接
                     // 使用 JDBC 驱动从数据库中读取数据
                     val statement = connection.createStatement()
-                    val sql = "INSERT INTO activity (name, time, location, work_context, child_advice) " +
-                            "VALUES ('$name', '$time', '$location', '$workContext', '$childAdvice')"
+                    val sql = "INSERT INTO activity (name, time, location, work_content, child_advice) " +
+                            "VALUES ('$name', '$time', '$location', '$workcontent', '$childAdvice')"
 
                     // 将数据插入到数据库中
                     statement.executeUpdate(sql)

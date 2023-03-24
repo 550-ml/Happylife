@@ -1,17 +1,21 @@
 package com.example.a111111
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.sql.Connection
 import java.sql.DriverManager
 
-class L_MyActivity : AppCompatActivity() {
-    var datas = mutableListOf<L_Item_card>()
+class L_MyActivity() : AppCompatActivity() {
+
+    var datas1 = mutableListOf<L_Item_card>()
+    var datas2 = mutableListOf<L_Item_card>()
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +28,8 @@ class L_MyActivity : AppCompatActivity() {
         recyclerView_up.layoutManager = LinearLayoutManager(this)
         recyclerView_down.layoutManager = LinearLayoutManager(this)
         //使用 layoutManager 属性来设置 RecyclerView 的布局管理器，这里使用的是 LinearLayoutManager（设置了滚动方式）
-        val adapter_up = L_MyParticipationAdapter(this,datas)
-        val adapter_down = L_NewActivityAdapter(this,datas)
+        val adapter_up = L_MyParticipationAdapter(this, datas1)
+        val adapter_down = L_NewActivityAdapter(this, datas2)
         //使用 com.example.happy-life.OlderAdapter 类的构造函数来创建一个 Adapter 实例（将数据进行转化）
         recyclerView_up.adapter = adapter_up
         recyclerView_down.adapter = adapter_down
@@ -38,24 +42,30 @@ class L_MyActivity : AppCompatActivity() {
                 //连接到数据库并获取连接对象
                 connection = DriverManager.getConnection(jdbcUrl, username, password)
                 //SQL查询,从 activity 表中获取所有行
+
+                val sharedPreferences = this.getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                val currentUser = sharedPreferences.getString("username", "")
+
                 val resultSetUp =
-                    connection?.createStatement()?.executeQuery("SELECT * FROM participation")
+                    connection?.createStatement()?.executeQuery("SELECT * FROM participation WHERE youngmanname='$currentUser'")
                 val resultSetDown =
-                    connection?.createStatement()?.executeQuery("SELECT * FROM activities")
+                    connection?.createStatement()?.executeQuery("SELECT * FROM activities WHERE youngmanname='$currentUser'")
                 //使用 resultSet.next() 遍历结果集并获取每一行的每一列的值
+
+
 
                 for (i in 0..(resultSetUp?.row ?: 0)){
                     while (resultSetUp?.next() == true) {
                         val name = resultSetUp.getString("name") ?: ""
                         val item = L_Item_card(name, i)
-                        datas.add(item)
+                        datas1.add(item)
                     }
                 }
                 for (i in 0..(resultSetDown?.row ?: 0)){
                     while (resultSetDown?.next() == true) {
                         val name = resultSetDown.getString("name") ?: ""
                         val item = L_Item_card(name, i)
-                        datas.add(item)
+                        datas2.add(item)
                     }
                 }
 
@@ -71,12 +81,15 @@ class L_MyActivity : AppCompatActivity() {
             }
         }.start()
 
-        val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        val fab =findViewById<FloatingActionButton>(R.id.floatingActionButton)
         fab.setOnClickListener {
             val intent = Intent(this, L_Add::class.java)
             startActivity(intent)
         }
+
     }
+
+    fun getConnection() = connection
 
     companion object {
         private const val jdbcUrl = "jdbc:mysql://39.101.79.219:3306/sgly2004?useSSL=false"

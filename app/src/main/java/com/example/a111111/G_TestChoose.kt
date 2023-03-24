@@ -1,7 +1,7 @@
 package com.example.a111111
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.sql.Connection
@@ -19,8 +19,6 @@ class G_TestChoose : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val nameList = mutableListOf<String>()
-
-
 
         val adapter = G_TestChooseAdapter(this, datas, nameList)
 
@@ -40,10 +38,10 @@ class G_TestChoose : AppCompatActivity() {
 
                 for (i in 0..(resultSet?.row ?: 0)){
                     while (resultSet?.next() == true) {
-                        val testname = resultSet.getString("testname") ?: ""
-                        val item = G_Card(testname, i)
+                        val Testname = resultSet.getString("test_name") ?: ""
+                        val item = G_Card(Testname, i)
                         datas.add(item)
-                        nameList.add(testname)
+                        nameList.add(Testname)
                     }
                 }
 

@@ -45,11 +45,10 @@ class WT_ElderActivity : WT_BaseActivity() {
                 val connection = DriverManager.getConnection(jdbcUrl, username, password)
                 // 查询数据
                 val query =
-                    "SELECT id, title, content, test_name FROM question_choose WHERE status=1"
+                    "SELECT id, title, content, test_name FROM test WHERE status=1"
                 val statement = connection.createStatement()
                 val resultSet = statement.executeQuery(query)
 
-                // 将查询结果转换为 Card 对象，并添加到 cards 列表中
                 // 将查询结果转换为 Card 对象，并添加到 cards 列表中
                 while (resultSet.next()) {
                     val id = resultSet.getInt("id")
