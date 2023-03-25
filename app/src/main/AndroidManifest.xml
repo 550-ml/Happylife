@@ -24,13 +24,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".life.ElderLifeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".WT_TExt"
             android:exported="false">
             <meta-data
@@ -246,6 +239,7 @@
         <activity android:name=".life.ChildLifeActivity" />
         <activity android:name=".life.InstantRemindActivity" />
         <activity android:name=".life.TimedRemindActivity" />
+        <activity android:name=".life.ElderLifeActivity" />
     </application>
 
 </manifest>

@@ -4,7 +4,6 @@ package com.example.a111111.life
 import android.content.Context
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.a111111.R
 import com.example.a111111.WT_BaseActivity
 import com.example.a111111.databinding.ActivityElderLifeBinding
 import java.sql.DriverManager
@@ -39,7 +38,7 @@ class ElderLifeActivity : WT_BaseActivity() {
             // 使用 JDBC 驱动从数据库中读取数据
             val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
             val childname = sharedPreferences.getString("binding","")
-            val sql ="SELECT *FROM remind WHERE child_name= '$childname'"
+            val sql ="SELECT *FROM remind WHERE child_name= ?"
             val statement = connection.prepareStatement(sql)
             statement.setString(1, childname)
             // 执行查询语句，获取结果集
