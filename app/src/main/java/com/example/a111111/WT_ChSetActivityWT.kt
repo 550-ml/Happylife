@@ -1,5 +1,7 @@
 package com.example.a111111
 
+
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -18,6 +20,8 @@ class WT_ChSetActivityWT : WT_BaseActivity() {
 
         accountAndSecurity.setOnClickListener {
             //跳转到账号与安全界面
+            val intent = Intent(this,WT_ChangeActivity::class.java)
+            startActivity(intent)
         }
         personalInfo.setOnClickListener {
             //跳转到个人信息界面

@@ -1,6 +1,7 @@
 package com.example.a111111
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -19,7 +20,6 @@ class WT_PersonalSetActivity : AppCompatActivity() {
     private lateinit var etAddress: EditText
     private lateinit var btnSubmit: Button
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wt_personalinfo2)
@@ -38,6 +38,19 @@ class WT_PersonalSetActivity : AppCompatActivity() {
         btnSubmit.setOnClickListener {
             savePersonalInfo()
         }
+
+        // 读取并显示个人信息
+        val sharedPreferences = getSharedPreferences("personal_info", Context.MODE_PRIVATE)
+        etName.setText(sharedPreferences.getString("name", ""))
+        val gender = sharedPreferences.getString("gender", "")
+        if (gender == "男") {
+            rbMale.isChecked = true
+        } else if (gender == "女") {
+            rbFemale.isChecked = true
+        }
+        etBirthDate.setText(sharedPreferences.getString("birthDate", ""))
+        etPhone.setText(sharedPreferences.getString("phone", ""))
+        etAddress.setText(sharedPreferences.getString("address", ""))
     }
 
     /**
@@ -75,7 +88,15 @@ class WT_PersonalSetActivity : AppCompatActivity() {
             return
         }
 
-        // TODO: 将个人信息保存到本地或服务器
+        // 保存个人信息到 SharedPreferences
+        val editor = getSharedPreferences("personal_info", Context.MODE_PRIVATE).edit()
+        editor.putString("name", name)
+        editor.putString("gender", gender)
+        editor.putString("birthDate", birthDate)
+        editor.putString("phone", phone)
+        editor.putString("address", address)
+        editor.apply()
+
         Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show()
         finish()
     }
