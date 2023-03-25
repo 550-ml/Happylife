@@ -24,13 +24,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".life.ElderLifeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".WT_TExt"
             android:exported="false">
             <meta-data
@@ -47,7 +40,11 @@
         <activity
             android:name=".WT_PersonalSetActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -62,8 +59,7 @@
         </activity>
         <activity
             android:name=".G_TestChoose"
-            android:exported="false"
-            android:launchMode="singleTask">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -112,8 +108,7 @@
         </activity>
         <activity
             android:name=".G_Analyze"
-            android:exported="false"
-            android:launchMode="singleTask">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -244,6 +239,7 @@
         <activity android:name=".life.ChildLifeActivity" />
         <activity android:name=".life.InstantRemindActivity" />
         <activity android:name=".life.TimedRemindActivity" />
+        <activity android:name=".life.ElderLifeActivity" />
     </application>
 
 </manifest>
