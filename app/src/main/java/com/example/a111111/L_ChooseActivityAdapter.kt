@@ -32,7 +32,7 @@ class L_ChooseActivityAdapter(private val activity: L_ChooseActivity, private va
         holder.itemView.setOnClickListener {
             //点击卡片时，会启动一个新的 OlderDetailActivity，并将卡片的编号（即 position 变量）传递给新的界面
             val intent = Intent(activity, L_ChooseActivityDetail::class.java)
-            intent.putExtra("position", position)
+            intent.putExtra("name", item.name)
             activity.startActivity(intent)
         }
     }

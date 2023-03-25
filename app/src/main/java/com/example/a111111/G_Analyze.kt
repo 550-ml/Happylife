@@ -1,7 +1,9 @@
 package com.example.a111111
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.sql.Connection
@@ -9,6 +11,7 @@ import java.sql.DriverManager
 
 class G_Analyze : AppCompatActivity() {
     private var datas = mutableListOf<G_Analyze_Card>()
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.g_analyze)
@@ -20,7 +23,7 @@ class G_Analyze : AppCompatActivity() {
 
         val nameList = mutableListOf<String>()
 
-        val adapter = G_AnalyzeAdapter(this, datas, nameList)
+        val adapter = G_AnalyzeAdapter(this, datas)
 
         recyclerView.adapter = adapter
 
@@ -33,31 +36,46 @@ class G_Analyze : AppCompatActivity() {
                 connection = DriverManager.getConnection(jdbcUrl, username, password)
                 //SQL查询,从 activity 表中获取所有行
                 val resultSet =
-                    connection?.createStatement()?.executeQuery("SELECT * FROM test_choose")
-                //使用 resultSet.next() 遍历结果集并获取每一行的每一列的值
+                    connection?.createStatement()?.executeQuery("SELECT testname, answer FROM test")
 
-                for (i in 0..(resultSet?.row ?: 0)){
-                    while (resultSet?.next() == true) {
-                        val testname = resultSet.getString("testname") ?: ""
+                // 声明一个 map 来存储不同的 testname 对应的总分数和数量
+                val scoreMap = mutableMapOf<String, Pair<Int, Int>>()
 
-                        val metaData = resultSet.metaData
-                        val columnCount = metaData.columnCount
+                while (resultSet?.next() == true) {
+                    val testname = resultSet.getString("testname") ?: ""
+                    val answer = resultSet.getInt("answer")
 
-                        var totalScore = 0
-                        for (j in 2..columnCount) {  // 从第二个字段开始读取每一个整数并累加
-                            val score = resultSet.getInt(j)
-                            if (score != null) {
-                                totalScore += (score/columnCount)
-                            }
-                        }
+                    Log.e("testname", testname)
+                    Log.e("answer","answer")
 
-                        val item = G_Analyze_Card(testname, i, totalScore)  // 将总分作为第三个参数传递给Item_card构造函数
-                        datas.add(item)
-                        nameList.add(testname)
+                    // 判断是否已经存在这个 testname
+                    if (scoreMap.containsKey(testname)) {
+                        // 已经存在，则将该 testname 对应的总分数和数量加上当前的 answer
+                        val (totalScore, count) = scoreMap[testname] ?: Pair(0, 0)
+                        scoreMap[testname] = Pair(totalScore + answer, count + 1)
+                    } else {
+                        // 不存在，则添加一个新的 testname
+                        scoreMap[testname] = Pair(answer, 1)
                     }
                 }
-                //通知 adapter 数据已经更改并调用 notifyDataSetChanged() 方法来更新视图
-                adapter.notifyDataSetChanged()
+
+                // 遍历 map，计算每个 testname 对应的平均分，并添加到 datas 和 nameList 中
+                var i = 0
+                scoreMap.forEach { (testname, scorePair) ->
+                    val totalScore = scorePair.first
+                    val count = scorePair.second
+                    val avgScore = if (count == 0) 0 else totalScore / count
+                    val item = G_Analyze_Card(testname, i, avgScore)
+                    datas.add(item)
+                    nameList.add(testname)
+                    i++
+
+                    Log.e("ave","$avgScore")
+                }
+                recyclerView.post {
+                    adapter.notifyDataSetChanged()
+                    Log.e("analyze","analyze适配器被调用了")
+                }
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }

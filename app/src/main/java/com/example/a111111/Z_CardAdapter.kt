@@ -1,12 +1,14 @@
 package com.example.a111111
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a111111.G_Analyze.Companion.connection
+import java.sql.Connection
+import java.sql.DriverManager
 
 class Z_CardAdapter(private val ItemLIst: List<Z_Card>, private val acting : Z_Acting) : RecyclerView.Adapter<Z_CardAdapter.ViewHolder>() {
 
@@ -18,7 +20,7 @@ class Z_CardAdapter(private val ItemLIst: List<Z_Card>, private val acting : Z_A
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.z_card, parent, false)
         return ViewHolder(view)
     }
 
@@ -29,62 +31,121 @@ class Z_CardAdapter(private val ItemLIst: List<Z_Card>, private val acting : Z_A
         holder.titleView.text = card.title
         holder.contentView.text = card.content
 
-        if (card.showButtons) {
+        val olderName = acting.getCurrentUser()
+        val testName = card.title
+        val content = card.content
+
+        Log.e("tag","$olderName")
+        Log.e("tag", testName)
+        Log.e("tag", content)
+
+
+        if (card.hasButtons) {
             holder.yesButton.visibility = View.VISIBLE
             holder.noButton.visibility = View.VISIBLE
+            Log.e("TAG","hasbutton0")
         } else {
+            Log.e("TAG","nobutton")
             holder.yesButton.visibility = View.GONE
             holder.noButton.visibility = View.GONE
         }
 
         if (card.hasButtons) {
-            holder.yesButton.setOnClickListener {
-                val currentUser = acting.getCurrentUser()
-                val testName = card.title
-                val olderName = currentUser?.let { it1 -> getOlderName(it1) }
 
-                // 检查当前用户是否已经提交过这个测试
-                if (!currentUser?.let { it1 -> isUserSubmitted(it1, testName) }!!) {
-                    // 将结果保存到数据库
-                    olderName?.let { it1 -> updateResult(testName, it1, 1) }
+            Log.e("TAG","hasbutton")
+
+            holder.yesButton.setOnClickListener {
+            Log.e("TAG","yes")
+                Thread {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver")
+                    connection = DriverManager.getConnection(jdbcUrl, username, password)
+                    connection?.createStatement()?.executeUpdate("UPDATE test SET answer=1 WHERE testname='$testName' AND oldername='$olderName' AND questioncontent='$content'")
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Log.e("tag","坏了")
+                    Log.e("taggg","$olderName")
+                    Log.e("taggg", testName)
+                    Log.e("taggg", content)
+                } finally {
+                    connection?.close()
                 }
+                }.start()
             }
 
-            holder.noButton.setOnClickListener {
-                val currentUser = "Bob" // 替换成当前用户的用户名
-                val testName = card.title
-                val olderName = getOlderName(currentUser)
 
-                // 检查当前用户是否已经提交过这个测试
-                if (!isUserSubmitted(currentUser, testName)) {
-                    // 将结果保存到数据库
-                    updateResult(testName, olderName, 0)
+            holder.noButton.setOnClickListener {
+                Log.e("TAG","no")
+                Thread {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver")
+                    connection = DriverManager.getConnection(jdbcUrl, username, password)
+                    connection?.createStatement()?.executeUpdate("UPDATE test SET answer=0 WHERE testname='$testName' AND oldername='$olderName' AND questioncontent='$content'")
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Log.e("tag","坏了")
+                } finally {
+                    connection?.close()
                 }
+                }.start()
             }
         }
     }
+/*
+    private fun updateResult(testName: String, olderName: String, result: Int, content: String) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver")
+            connection = DriverManager.getConnection(jdbcUrl, username, password)
+            connection?.createStatement()?.executeUpdate("UPDATE test SET answer=$result WHERE testname='$testName' AND oldername='$olderName' AND questioncontent='$content'")
 
-    private fun getOlderName(username: String): String {
+            // 保存要输出的信息
+            val tag = "Z_CardAdapter"
+            val message = "$testName, $olderName, $content"
+
+            // 在主线程里通过 Log 输出
+            Handler(Looper.getMainLooper()).post {
+                Log.e(tag, message)
+            }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            connection?.close()
+        }
+    }
+
+*/
+
+    companion object {
+        val jdbcUrl = "jdbc:mysql://39.101.79.219:3306/sgly2004?useSSL=false"
+        val username = "sgly2004"
+        val password = "sgly2004"
+        var connection: Connection? = null
+    }
+
+/*     private fun getOlderName(username: String): String {
         var olderName = ""
         connection?.use { conn ->
             val stmt = conn.createStatement()
-            val sql = "SELECT oldername FROM user_info WHERE username='$username'"
+            val sql = "SELECT binding_username FROM users WHERE username='$username'"
             val rs = stmt.executeQuery(sql)
             if (rs.next()) {
-                olderName = rs.getString("oldername")
+                olderName = rs.getString("binding_username")
             }
             rs.close()
             stmt.close()
         }
         return olderName
     }
+    */
 
-    private fun isUserSubmitted(username: String, testName: String): Boolean {
+/*    private fun isUserSubmitted(username: String, testName: String): Boolean {
         var isSubmitted = false
         connection?.use { conn ->
             val stmt = conn.createStatement()
             val sql =
-                "SELECT * FROM question_choose WHERE oldername='$username' AND test_name='$testName'"
+                "SELECT * FROM test WHERE oldername='$username' AND testname='$testName'"
             val rs = stmt.executeQuery(sql)
             if (rs.next()) {
                 isSubmitted = true
@@ -94,15 +155,9 @@ class Z_CardAdapter(private val ItemLIst: List<Z_Card>, private val acting : Z_A
         }
         return isSubmitted
     }
+*/
 
-    private fun updateResult(testName: String, olderName: String, result: Int) {
-        connection?.use { conn ->
-            val stmt = conn.createStatement()
-            val sql =
-                "UPDATE question_choose SET choose_result=$result WHERE test_name='$testName' AND oldername='$olderName' AND choose_result IS NULL LIMIT 1"
-            stmt.executeUpdate(sql)
-            stmt.close()
-        }
-    }
+
 }
+
 

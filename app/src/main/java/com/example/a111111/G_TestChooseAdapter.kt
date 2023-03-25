@@ -1,6 +1,7 @@
 package com.example.a111111
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ class G_TestChooseAdapter(private val activity: G_TestChoose, private val ItemLI
     //加载了卡片的布局文件，并创建了 ViewHolder 实例
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.g_card, parent, false)
+        Log.e("G_TestChooseAdapter","布局加载完毕")
         return ViewHolder(view)
     }
 
@@ -29,11 +31,10 @@ class G_TestChooseAdapter(private val activity: G_TestChoose, private val ItemLI
 
         //为卡片添加了点击事件处理器
         holder.itemView.setOnClickListener {
-            //点击卡片时，会启动一个新的 OlderDetailActivity，并将卡片的编号（即 position 变量）传递给新的界面
             val intent = Intent(activity, G_QuestionChoose::class.java)
-
             intent.putExtra("name", nameList[position])
             activity.startActivity(intent)
         }
+        Log.e("G_TestChooseAdapter","绑定成功")
     }
 }

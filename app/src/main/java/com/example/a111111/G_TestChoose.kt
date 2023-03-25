@@ -1,6 +1,9 @@
 package com.example.a111111
 
+import android.annotation.SuppressLint
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -9,10 +12,10 @@ import java.sql.DriverManager
 
 class G_TestChoose : AppCompatActivity() {
     private var datas = mutableListOf<G_Card>()
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.g_test_choose)
-
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
@@ -44,14 +47,19 @@ class G_TestChoose : AppCompatActivity() {
                         nameList.add(Testname)
                     }
                 }
+                Log.e("TestChoose","数据获取成功")
+                recyclerView.post {
+                    adapter.notifyDataSetChanged()
+                Log.e("TestChoose","适配器调用成功")
+                }
 
-                //通知 adapter 数据已经更改并调用 notifyDataSetChanged() 方法来更新视图
-                adapter.notifyDataSetChanged()
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
         }.start()
     }
+
+    fun getConnection() = connection
 
     companion object {
         val jdbcUrl = "jdbc:mysql://39.101.79.219:3306/sgly2004?useSSL=false"
