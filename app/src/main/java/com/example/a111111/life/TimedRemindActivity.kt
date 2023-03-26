@@ -27,15 +27,13 @@ class TimedRemindActivity : WT_BaseActivity() {
         binding.btnSend.setOnClickListener {
             val title = binding.edtTitle.text.toString()
             val content = binding.edtContent.text.toString()
-            val time = binding.edtTime.text.toString()
-            if(title.isNotEmpty()||content.isNotEmpty()||time.isNotEmpty()){
-                val remind = Remind(title, content, time)
+            if(title.isNotEmpty()||content.isNotEmpty()){
+                val remind = Remind(title, content)
                 remindList.add(remind)
                 adapter.notifyItemInserted(remindList.size-1)
                 binding.recyclerView.scrollToPosition(remindList.size-1)
                 binding.edtTitle.setText("")
                 binding.edtContent.setText("")
-                binding.edtTime.setText("")
                 Thread {
 
                     //加载 MySQL JDBC 驱动程序
@@ -49,7 +47,7 @@ class TimedRemindActivity : WT_BaseActivity() {
                     val statement = connection.createStatement()
                     val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
                     val username = sharedPreferences.getString("username","")
-                    val sql = "INSERT INTO remind (child_name,title,content) VALUES ('$username','$title', '$content')"
+                    val sql = "INSERT INTO remind (child_name,title,content,time) VALUES ('$username','$title', '$content')"
 
                     // 将数据插入到数据库中
                     statement.executeUpdate(sql)

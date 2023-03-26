@@ -3,6 +3,7 @@ package com.example.a111111.life
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a111111.WT_BaseActivity
 import com.example.a111111.databinding.ActivityElderLifeBinding
@@ -34,6 +35,8 @@ class ElderLifeActivity : WT_BaseActivity() {
             //连接到数据库并获取连接对象
             val connection = DriverManager.getConnection(jdbcUrl, username, password)
 
+            Log.e("remind1","1")
+
             //使用 connection 属性来获取到数据库连接
             // 使用 JDBC 驱动从数据库中读取数据
             val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
@@ -46,13 +49,21 @@ class ElderLifeActivity : WT_BaseActivity() {
 
             // 遍历结果集，将查询到的记录保存到一个 List 中
 
+            Log.e("remind2","2")
+            if (resultSet.next()==null){Log.e("remind","没进去")}else{Log.e("remind","进去了")}
+
+
             while (resultSet.next()) {
                 val title = resultSet.getString("title")
+                Log.e("remind","$title")
                 val content = resultSet.getString("content")
-                val time = "null"
+                Log.e("remind","$content")
                 // ... 根据表中的字段，继续获取其他信息
-                val child = Remind(title, content, time)
+                val child = Remind(title, content)
                 childList.add(child)
+
+                Log.e("remind3","3")
+
             }
 
             // 关闭结果集、PreparedStatement 和数据库连接
