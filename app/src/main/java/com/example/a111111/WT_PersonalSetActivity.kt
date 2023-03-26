@@ -19,11 +19,6 @@ class WT_PersonalSetActivity : AppCompatActivity() {
     private lateinit var etPhone: EditText
     private lateinit var etAddress: EditText
     private lateinit var btnSubmit: Button
-    private lateinit var etHeight: EditText
-    private lateinit var etWeight: EditText
-    private lateinit var etMedicalHistory: EditText
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +33,6 @@ class WT_PersonalSetActivity : AppCompatActivity() {
         etPhone = findViewById(R.id.et_phone)
         etAddress = findViewById(R.id.et_address)
         btnSubmit = findViewById(R.id.btn_submit)
-        etHeight = findViewById(R.id.et_height)
-        etWeight = findViewById(R.id.et_weight)
-        etMedicalHistory = findViewById(R.id.et_allergic_reaction)
 
         // 提交按钮点击事件
         btnSubmit.setOnClickListener {
@@ -70,9 +62,6 @@ class WT_PersonalSetActivity : AppCompatActivity() {
         val birthDate = etBirthDate.text.toString().trim { it <= ' ' }
         val phone = etPhone.text.toString().trim { it <= ' ' }
         val address = etAddress.text.toString().trim { it <= ' ' }
-        val height = etHeight.text.toString().trim { it <= ' ' }
-        val weight = etWeight.text.toString().trim { it <= ' ' }
-        val medicalHistory = etMedicalHistory.text.toString().trim { it <= ' ' }
         var gender = ""
         val checkedRadioButtonId = rgGender.checkedRadioButtonId
         if (checkedRadioButtonId == rbMale.id) {
@@ -98,14 +87,6 @@ class WT_PersonalSetActivity : AppCompatActivity() {
             Toast.makeText(this, "请输入地址", Toast.LENGTH_SHORT).show()
             return
         }
-        if (height.isEmpty()) {
-            Toast.makeText(this, "请输入身高", Toast.LENGTH_SHORT).show()
-            return
-        }
-        if (weight.isEmpty()) {
-            Toast.makeText(this, "请输入体重", Toast.LENGTH_SHORT).show()
-            return
-        }
 
         // 保存个人信息到 SharedPreferences
         val editor = getSharedPreferences("personal_info", Context.MODE_PRIVATE).edit()
@@ -114,9 +95,6 @@ class WT_PersonalSetActivity : AppCompatActivity() {
         editor.putString("birthDate", birthDate)
         editor.putString("phone", phone)
         editor.putString("address", address)
-        editor.putString("height", height)
-        editor.putString("weight", weight)
-        editor.putString("medicalHistory", medicalHistory)
         editor.apply()
 
         Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show()

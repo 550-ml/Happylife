@@ -68,23 +68,11 @@
             android:visibility="gone" />
 
         <EditText
-            android:id="@+id/et_height"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="身高（cm）" />
-
-        <EditText
-            android:id="@+id/et_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="体重（kg）" />
-        <EditText
             android:id="@+id/et_allergic_reaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="药物过敏情况"
-            />
-
+            android:hint="药物过敏情况（老人端）"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btn_submit"
@@ -93,6 +81,12 @@
             android:layout_marginTop="16dp"
             android:text="保存" />
 
+        <Button
+            android:id="@+id/btn_view_personal_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="查看个人信息" />
 
 
     </LinearLayout>
