@@ -1,13 +1,15 @@
 package com.example.a111111
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.a111111.G_Analyze.Companion.connection
 import com.google.android.material.snackbar.Snackbar
 
-class G_QuestionChooseAdapter(private val ItemLIst: List<G_Card>) : RecyclerView.Adapter<G_QuestionChooseAdapter.ViewHolder>() {
+class G_QuestionChooseAdapter(private val ItemLIst: List<G_Card>,val test_name: String, private val acting : Z_Acting) : RecyclerView.Adapter<G_QuestionChooseAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //使用 findViewById 方法来获取布局文件中的文本展示框
@@ -28,7 +30,10 @@ class G_QuestionChooseAdapter(private val ItemLIst: List<G_Card>) : RecyclerView
         val item = ItemLIst[position]
         holder.activityNameTextView.text = item.name
 
-        //为卡片添加了点击事件处理器
+        val question_content = item.name
+        val testname = test_name
+
+
         holder.itemView.setOnClickListener {
             val snackbar = Snackbar.make(holder.itemView.findViewById(android.R.id.content), "确定要发送吗？", Snackbar.LENGTH_LONG)
 
@@ -36,12 +41,39 @@ class G_QuestionChooseAdapter(private val ItemLIst: List<G_Card>) : RecyclerView
                 snackbar.dismiss()
             }.show()
 
-            snackbar.setAction("确定") {
-                //发送逻辑
+            val youngmanname = acting.getCurrentUser()
+            val oldername = youngmanname?.let { it1 -> getOlderName(it1) }
 
+            snackbar.setAction("确定") {
+                connection?.use { conn ->
+                    val stmt = conn.createStatement()
+                    val sql =
+                        "UPDATE test SET testname=$testname AND questioncontent=$question_content WHERE youngmanname='$youngmanname' AND oldername='$oldername'"
+                    stmt.executeUpdate(sql)
+                    stmt.close()
+                }
 
             }.show()
         }
+
+        Log.e("questionChooseAdapter","question的适配器启动了")
     }
+
+    private fun getOlderName(username: String): String {
+        var olderName = ""
+        connection?.use { conn ->
+            val sql = "SELECT binding_username FROM users WHERE username = ?"
+            val stmt = conn.prepareStatement(sql)
+            stmt.setString(1, username)
+            val rs = stmt.executeQuery()
+            if (rs.next()) {
+                olderName = rs.getString("binding_username")
+            }
+            rs.close()
+            stmt.close()
+        }
+        return olderName
+    }
+
 
 }

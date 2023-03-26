@@ -1,5 +1,6 @@
 package com.example.a111111
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -30,8 +31,8 @@ class L_Add : AppCompatActivity() {
             snackbar.setAction("确定") {
                 // 点击确定按钮的处理逻辑
                 // 获取文本框中的数据
-                val oldernameEditText = findViewById<EditText>(R.id.input_oldername)
-                val oldername = oldernameEditText.text.toString()
+                val sharedPreferences = this.getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                val youngmanname = sharedPreferences.getString("username", "")
 
                 val nameEditText = findViewById<EditText>(R.id.input_name)
                 val name = nameEditText.text.toString()
@@ -59,8 +60,8 @@ class L_Add : AppCompatActivity() {
                     //使用 connection 属性来获取到数据库连接
                     // 使用 JDBC 驱动从数据库中读取数据
                     val statement = connection.createStatement()
-                    val sql = "INSERT INTO activity (oldername, name, time, location, work_content, child_advice) " +
-                            "VALUES ('$oldername','$name', '$time', '$location', '$workcontent', '$childAdvice')"
+                    val sql = "INSERT INTO activities (youngmanname, name, time, location, work_content, child_advice) " +
+                            "VALUES ('$youngmanname','$name', '$time', '$location', '$workcontent', '$childAdvice')"
 
                     // 将数据插入到数据库中
                     statement.executeUpdate(sql)
