@@ -31,7 +31,7 @@ class RemindAdapter(private val RemindList :ArrayList<Remind>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: RemindViewHolder, position: Int) {
-        Log.e("remind","1")
+        Log.e("remind","11111111")
         val remind = RemindList[position]
         holder.remindTitle.text = remind.title
         holder.remindContent.text = remind.content
