@@ -89,7 +89,7 @@ Log.e("TAG","$name")
                     val child_advice: String = resultSet.getString("child_advice")
                     val youngmanname: String? = currentUser
                     Log.e("young", "$youngmanname")
-                    val oldername: String = "111"/*older_name.getString("binding_username")*/
+                    val oldername: String = "yanshi"/*older_name.getString("binding_username")*/
                     Log.e("oldername", oldername)
 
 

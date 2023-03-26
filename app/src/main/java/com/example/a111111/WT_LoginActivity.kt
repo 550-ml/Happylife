@@ -28,7 +28,7 @@ class WT_LoginActivity : WT_BaseActivity() {
         binding.btnLogin.setOnClickListener {
             val account = binding.etUsername.text.toString()
             val password = binding.etPassword.text.toString()
-111
+
             if (account.isNotEmpty() && password.isNotEmpty()) {
                 GlobalScope.launch(Dispatchers.IO) {
                     var conn: Connection? = null

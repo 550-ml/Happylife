@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="156dp"
         android:gravity="center"
-        android:text="养老APP"
+        android:text="老有所伴"
         android:textColor="#F2902E"
         android:textSize="56sp"
         android:layout_marginTop="160dp"/>
