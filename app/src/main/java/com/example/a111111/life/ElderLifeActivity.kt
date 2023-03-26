@@ -49,7 +49,7 @@ class ElderLifeActivity : WT_BaseActivity() {
             while (resultSet.next()) {
                 val title = resultSet.getString("title")
                 val content = resultSet.getString("content")
-                val time = resultSet.getString("time")
+                val time = "null"
                 // ... 根据表中的字段，继续获取其他信息
                 val child = Remind(title, content, time)
                 childList.add(child)

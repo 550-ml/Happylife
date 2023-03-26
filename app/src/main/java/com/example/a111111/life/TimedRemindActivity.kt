@@ -49,7 +49,7 @@ class TimedRemindActivity : WT_BaseActivity() {
                     val statement = connection.createStatement()
                     val sharedPreferences = getSharedPreferences("user_info", Context.MODE_PRIVATE)
                     val username = sharedPreferences.getString("username","")
-                    val sql = "INSERT INTO remind (child_name,title,content,time) VALUES ('$username','$title', '$content','$time')"
+                    val sql = "INSERT INTO remind (child_name,title,content) VALUES ('$username','$title', '$content')"
 
                     // 将数据插入到数据库中
                     statement.executeUpdate(sql)
