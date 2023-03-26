@@ -58,6 +58,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".WT_ChangeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".G_TestChoose"
             android:exported="false">
             <meta-data
