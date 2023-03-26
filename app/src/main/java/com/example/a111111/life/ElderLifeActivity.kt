@@ -4,7 +4,10 @@ package com.example.a111111.life
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a111111.R
 import com.example.a111111.WT_BaseActivity
 import com.example.a111111.databinding.ActivityElderLifeBinding
 import java.sql.DriverManager
@@ -90,7 +93,44 @@ class ElderLifeActivity : WT_BaseActivity() {
 
         }.start()
 
+        adapter.setOnItemClickListener(object :RemindAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int) {
+                AlertDialog.Builder(this@ElderLifeActivity).apply {
+                    setTitle("是否要删除此条提醒")
+                    setMessage("")
+                    setCancelable(false)
+                    setPositiveButton("确定") { _, _ ->
+                        binding.recyclerView.getChildAt(position)?.let {
+                            val title = it.findViewById<TextView>(R.id.remindTitle)
+                            Thread {
 
+                                //加载 MySQL JDBC 驱动程序
+                                Class.forName("com.mysql.jdbc.Driver")
+
+                                //连接到数据库并获取连接对象
+                                val connection = DriverManager.getConnection(jdbcUrl, username, password)
+
+                                //使用 connection 属性来获取到数据库连接
+                                // 使用 JDBC 驱动从数据库中读取数据
+                                val statement = connection.createStatement()
+                                val sql = "DELETE FROM remind WHERE title='$title'"
+
+                                // 将数据插入到数据库中
+                                statement.executeUpdate(sql)
+
+                                // 关闭连接
+                                statement.close()
+                                connection.close()
+                            }.start()
+                        }
+                        adapter.removeData(position)
+
+                    }
+                    setNegativeButton("取消") { _, _ -> }
+                    show()
+                }
+            }
+        })
 
 
 
