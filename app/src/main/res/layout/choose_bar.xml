@@ -7,7 +7,7 @@
         android:id="@+id/activity_selection_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Activity Selection" />
+        android:text="活动选择" />
 
     <View
         android:layout_width="0dp"
@@ -18,7 +18,7 @@
         android:id="@+id/my_activities_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Activities" />
+        android:text="我的活动" />
 
 </LinearLayout>
 

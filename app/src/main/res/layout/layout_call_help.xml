@@ -38,9 +38,9 @@
         <Button
             android:id="@+id/call_110"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:background="@drawable/btbg_grayonlyside"
-            android:text="匪警110                      >"
+            android:text="匪警110"
             android:textSize="40sp"
             android:textColor="@color/white"
             >
@@ -48,9 +48,9 @@
         <Button
             android:id="@+id/call_119"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:background="@drawable/btbg_grayonlyside"
-            android:text="火警119                      >"
+            android:text="火警119"
             android:textSize="40sp"
             android:textColor="@color/white"
             >
@@ -58,9 +58,9 @@
         <Button
             android:id="@+id/call_120"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:background="@drawable/btbg_grayonlyside"
-            android:text="急救120                      >"
+            android:text="急救120"
             android:textSize="40sp"
             android:textColor="@color/white"
             >
@@ -78,18 +78,6 @@
             >
         </Button>
 
-        <Button
-            android:id="@+id/call_exit"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
-            android:text="退出"
-            android:textSize="30dp"
-            android:textColor="#DCDCDC"
-            android:layout_gravity="center"
-            android:background="@drawable/btbg_grayexit"
-            >
 
-        </Button>
     </LinearLayout>
 </LinearLayout>

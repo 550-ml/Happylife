@@ -1,15 +1,12 @@
 package com.example.a111111
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import com.example.a111111.R
+import androidx.appcompat.app.AppCompatActivity
 import java.sql.DriverManager
 
 class L_NewActivityDetail : AppCompatActivity() {
-    //var datas = mutableListOf<Item_card>()
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_detail)
@@ -33,7 +30,7 @@ class L_NewActivityDetail : AppCompatActivity() {
             // 使用 JDBC 驱动从数据库中读取数据
             val statement = connection.createStatement()
             val resultSet =
-                statement.executeQuery("SELECT * FROM activities WHERE id = $position")
+                statement.executeQuery("SELECT * FROM activities WHERE id = '$position'")
             //更新UI需要在主线程
             runOnUiThread {
                 val activityNameTextView: TextView = findViewById(R.id.activityNameTextView)

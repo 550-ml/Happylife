@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a111111.WT_BaseActivity
 import com.example.a111111.databinding.ActivityElderLifeBinding
+import java.sql.Connection
 import java.sql.DriverManager
 
 class ElderLifeActivity : WT_BaseActivity() {
@@ -34,7 +35,6 @@ class ElderLifeActivity : WT_BaseActivity() {
         Thread {
 
             try {
-
             //加载 MySQL JDBC 驱动程序
             Class.forName("com.mysql.jdbc.Driver")
 
@@ -46,7 +46,9 @@ class ElderLifeActivity : WT_BaseActivity() {
             //使用 connection 属性来获取到数据库连接
             // 使用 JDBC 驱动从数据库中读取数据
             val sharedPreferences = this.getSharedPreferences("user_info", Context.MODE_PRIVATE)
-            val childName = sharedPreferences.getString("username","")
+            val username = sharedPreferences.getString("username","")
+                val childName = username?.let { getChildName(it) }
+
             val sql ="SELECT *FROM remind WHERE child_name= ?"
             val statement = connection.prepareStatement(sql)
             statement.setString(1, childName)
@@ -56,8 +58,7 @@ class ElderLifeActivity : WT_BaseActivity() {
             // 遍历结果集，将查询到的记录保存到一个 List 中
 
             Log.e("remind2","2")
-            if (resultSet.next()==false){Log.e("remind","没进去")}else{Log.e("remind","进去了")}
-
+            if (!resultSet.next()){Log.e("remind","没进去")}else{Log.e("remind","进去了")}
 
             while (resultSet.next()) {
                 val title = resultSet.getString("title")
@@ -81,18 +82,43 @@ class ElderLifeActivity : WT_BaseActivity() {
                     adapter.notifyDataSetChanged()
                     Log.e("TestChoose","适配器调用成功")
                 }
-
-
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
                 Log.e("choose", "出现异常：${e.message}")
             }
 
         }.start()
+    }
 
+    private fun getChildName(username: String): String {
+        var ChildName = ""
+        val thread = Thread {
+            try {
+                Class.forName("com.mysql.jdbc.Driver")
+                val conn = DriverManager.getConnection(jdbcUrl, Companion.username, password)
+                val rs = conn?.createStatement()?.executeQuery( "SELECT username FROM users WHERE binding_username = '$username'")
 
+                if (rs != null) {
+                    if (rs.next()) {
+                        ChildName = rs.getString("username")
+                    }
+                }
 
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        thread.start()
+        thread.join() // Wait for the thread to finish before returning the result
+        return ChildName
+    }
 
+    fun getConnection() = connection
 
+    companion object {
+        val jdbcUrl = "jdbc:mysql://39.101.79.219:3306/sgly2004?useSSL=false"
+        val username = "sgly2004"
+        val password = "sgly2004"
+        var connection: Connection? = null
     }
 }

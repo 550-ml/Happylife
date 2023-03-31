@@ -32,7 +32,9 @@ class G_Rule : AppCompatActivity() {
                 val resultSet = connection?.createStatement()?.executeQuery("SELECT rule FROM test_choose WHERE test_name='$name'")
                 if (resultSet != null) {
                     if (resultSet.next()) { // 需要先调用 next() 方法将指针移到第一行记录
-                        RuleTextView.text= resultSet.getString("rule")
+                        runOnUiThread {
+                            RuleTextView.text = resultSet.getString("rule")
+                        }
                         Log.e("rusult","到了")
                     } else {
                         Log.e("rule","结果集中没有记录")

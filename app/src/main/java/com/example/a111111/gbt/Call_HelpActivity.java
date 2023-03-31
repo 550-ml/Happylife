@@ -37,7 +37,6 @@ public class Call_HelpActivity extends AppCompatActivity {
         call_phone110=findViewById(R.id.call_110);
         call_phone119=findViewById(R.id.call_119);
         call_phone120=findViewById(R.id.call_120);
-        exit_home=findViewById(R.id.call_exit);
         per_health=findViewById(R.id.health_info);
 
 

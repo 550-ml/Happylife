@@ -20,13 +20,21 @@ class G_QuestionChoose : AppCompatActivity() {
         Log.e("test_name","$test_name")
 
 
+
         // 创建了一个 RecyclerView 控件，并将其与 com.example.happy-life.OlderAdapter 适配器绑定
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         // 创建了一个 RecyclerView 控件实例
         recyclerView.layoutManager = LinearLayoutManager(this)
         //使用 layoutManager 属性来设置 RecyclerView 的布局管理器，这里使用的是 LinearLayoutManager（设置了滚动方式）
         val acting = Z_Acting(this)
-        val adapter = test_name?.let { G_QuestionChooseAdapter(datas, it,acting) }
+        val youngmanname = acting.getCurrentUser()
+        Log.e("questionchoose","$youngmanname")
+        val olderName = youngmanname?.let { getOlderName(it) }
+        Log.e("questionchoose","$olderName")
+        val adapter = test_name?.let { olderName?.let { it1 ->
+            G_QuestionChooseAdapter(datas, it, acting, it1)
+        } }
+
         //使用 com.example.happy-life.OlderAdapter 类的构造函数来创建一个 Adapter 实例（将数据进行转化）
         recyclerView.adapter = adapter
         //将这个实例设置给 RecyclerView 的 adapter 属性
@@ -67,6 +75,33 @@ class G_QuestionChoose : AppCompatActivity() {
             }
         }.start()
     }
+
+    private fun getOlderName(username: String): String {
+        var olderName = ""
+        val thread = Thread {
+            try {
+                Class.forName("com.mysql.jdbc.Driver")
+                val conn = DriverManager.getConnection(jdbcUrl, Companion.username, password)
+
+                val rs = conn?.createStatement()?.executeQuery( "SELECT binding_username FROM users WHERE username = '$username'")
+
+                if (rs != null) {
+                    if (rs.next()) {
+                        olderName = rs.getString("binding_username")
+                    }
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        thread.start()
+        thread.join() // Wait for the thread to finish before returning the result
+        Log.e("getOlderName", olderName)
+        return olderName
+    }
+
+
 
     fun getConnection() = connection
 

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a111111.R
 
 class L_MyParticipationAdapter(private val activity: L_MyActivity, private var datas: MutableList<L_Item_card>) : RecyclerView.Adapter<L_MyParticipationAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -27,6 +26,7 @@ class L_MyParticipationAdapter(private val activity: L_MyActivity, private var d
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = datas.get(position)
+
         holder.activityNameTextView.text = item.name
         //为卡片添加了点击事件处理器
         holder.itemView.setOnClickListener {

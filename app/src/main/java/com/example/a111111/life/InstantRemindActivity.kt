@@ -1,11 +1,13 @@
 package com.example.a111111.life
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.a111111.WT_BaseActivity
 import com.example.a111111.databinding.ActivityInstantRemindBinding
 import java.sql.DriverManager
+
 
 class InstantRemindActivity : WT_BaseActivity() {
 
@@ -48,6 +50,9 @@ class InstantRemindActivity : WT_BaseActivity() {
                 }.start()
             }
             Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ChildLifeActivity::class.java)
+            startActivity(intent)
         }
     }
 }

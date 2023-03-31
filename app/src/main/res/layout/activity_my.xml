@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My participation"
+        android:text="我参与的"
         android:textSize="20sp"
         android:gravity="center"/>
 
@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New activity"
+        android:text="我创立的"
         android:textSize="20sp"
         android:gravity="center"/>
 
